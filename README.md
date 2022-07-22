@@ -31,3 +31,8 @@ Naked (with distribution)
 ```ts
 type LookUp<U, T> = U extends {type: T} ? U : never;
 ```
+
+## Array type with Mapped Types
+```ts
+Array<T> = {[K in keyof T]: T[K]}
+```
