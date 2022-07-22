@@ -20,3 +20,14 @@ type Combine<T> = {[P in keyof T]: T[P]}
 type ArrayNumberToString<T extends any[]> = {[P in keyof T]: T[P] extends number ? string : T[P] }
 ```
 
+## Ensuring Distributed Unions by using Naked Variable left of 'extends'
+Conditional types are only distributive when they have the form "T extends ..." (for any type parameter T); a more complex expression left of "extends" does not trigger distributivity.
+
+Not naked (no distribution)
+```ts
+type LookUp<U extends {type: any}, T> = U['type'] extends T ? U : never
+```
+Naked (with distribution)
+```ts
+type LookUp<U, T> = U extends {type: T} ? U : never;
+```
