@@ -15,6 +15,13 @@ type UseVariable<Key extends string, Value: any> = {[P in Key]: Value}
 type Combine<T> = {[P in keyof T]: T[P]}
 ```
 
+## Add additional loop in mapped type by using unions
+```ts
+type AppendToObject<T, K extends keyof any, V> = {
+  [key in keyof T | K]: key extends keyof T ? T[key] : V;
+};
+```
+
 ## Loop over an Array
 ```ts
 type ArrayNumberToString<T extends any[]> = {[P in keyof T]: T[P] extends number ? string : T[P] }
