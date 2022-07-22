@@ -14,3 +14,9 @@ type UseVariable<Key extends string, Value: any> = {[P in Key]: Value}
 ```ts
 type Combine<T> = {[P in keyof T]: T[P]}
 ```
+
+## Loop over an Array
+```ts
+type ArrayNumberToString<T extends any[]> = {[P in keyof T]: T[P] extends number ? string : T[P] }
+```
+
