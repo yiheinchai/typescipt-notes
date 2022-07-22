@@ -20,6 +20,11 @@ type Combine<T> = {[P in keyof T]: T[P]}
 type ArrayNumberToString<T extends any[]> = {[P in keyof T]: T[P] extends number ? string : T[P] }
 ```
 
+## Loop over a Union
+```ts
+type LoopUnion<Union, Item = Union> = Item extends Item ? `loop ${Item}` : never;
+```
+
 ## Ensuring Distributed Unions by using Naked Variable left of 'extends'
 Conditional types are only distributive when they have the form "T extends ..." (for any type parameter T); a more complex expression left of "extends" does not trigger distributivity.
 
@@ -35,4 +40,14 @@ type LookUp<U, T> = U extends {type: T} ? U : never;
 ## Array type with Mapped Types
 ```ts
 Array<T> = {[K in keyof T]: T[K]}
+```
+
+## Never distributed as empty unions
+```ts
+// when T = never
+T extends never = never
+
+// prevent treating never as empty unions
+[T] extends [never] = True
+
 ```
