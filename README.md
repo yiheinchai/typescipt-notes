@@ -58,6 +58,12 @@ T extends never = never
 [T] extends [never] = True
 ```
 
+## Using Unions and Intersections to find difference between objects
+```ts
+type Diff<O, O1> = Omit<O & O1, keyof (O | O1)>
+```
+(Brilliant Explanation here)[https://github.com/type-challenges/type-challenges/issues/3014]
+
 ## Array to Union
 ```ts
 type ArrayToUnion<T extends any[]> = T[number]
