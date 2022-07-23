@@ -56,5 +56,10 @@ T extends never = never
 
 // prevent treating never as empty unions
 [T] extends [never] = True
+```
 
+## Array to Union
+```ts
+type ArrayToUnion<T extends any[]> = T[number]
+type ArrayToUnion<T extends any[]> = T extends (infer U)[] ? U : never
 ```
